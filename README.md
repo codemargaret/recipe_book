@@ -1,1 +1,1 @@
-![Alt text](./db_design.jpg?raw=true "Database Schema Design")
+![Alt text](./db_design.png?raw=true "Database Schema Design")
