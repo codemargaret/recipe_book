@@ -43,7 +43,30 @@
 
 <!-- This is new code -->
 <div class="row justify-content-md-center">
-  <div class="col-lg-4 col-sm-12">
+  <div class="col-lg-3 col-sm-12">
+    <div class="card ml-lg-0" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Rating: <%= @recipe.rating %></div>
+        <div class="card-body mb-3" id="h-r-body">
+          <form action="/recipe/new/<%= @recipe.id %>/rating" method="post">
+            <input name="_method" type="hidden" value="patch">
+            <div class="form-group">
+              <label for="rating">Select a Rating</label>
+              <select class="custom-select" name="rating">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+            </div>
+            <button class="btn btn-outline-primary btn-block">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-3 col-sm-12">
     <div class="card ml-lg-0" id="content">
       <div class="card border-secondary" id="highest-rated">
         <div class="card-header bg-secondary text-white" id="h-r-header">Tags:</div>
@@ -61,7 +84,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-8 col-sm-12">
+  <div class="col-lg-6 col-sm-12">
     <div class="card ml-lg-0" id="content">
       <div class="card border-secondary" id="highest-rated">
         <div class="card-header bg-secondary text-white" id="h-r-header">Add a Tag</div>
@@ -100,3 +123,4 @@
     </div>
   </div>
 </div>
+<a href="/">Finish</a>

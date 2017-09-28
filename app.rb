@@ -5,10 +5,15 @@ require('pry')
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
-  @recipes = Recipe.where("rating >= 4").limit(3)
+  @recipes = Recipe.where("rating >= 4").sample(3)
   @ingredients = Ingredient.all
   @tags = Tag.all
   erb :index
+end
+
+get '/recipe/:id' do
+  @recipe = Recipe.find(params[:id])
+  erb :recipe
 end
 
 post '/recipe/new' do
@@ -20,28 +25,7 @@ post '/recipe/new' do
     erb :error # Change to redirect route
   end
 end
-#
-# ###### I am used to find a recipe by tag ######
-# get '/recipe/find_by/tag' do
-#
-# end
-#
-# post '/recipe/find_by/tag' do
-#
-# end
-# ################################################
-#
-# ### I am used to find a recipe by ingredient ###
-# get '/recipe/find_by/ingredient' do
-#
-# end
-#
-# post '/recipe/find_by/ingredient' do
-#
-# end
-# ################################################
-#
-### In this route the user will add ingredients ###
+
 get '/recipe/new/:id/ingredient' do
   @recipe = Recipe.find(params[:id])
   @units = Unit.all
@@ -142,4 +126,18 @@ get '/recipes/by_tag/:id' do
   @recipes = tag.recipes
   erb :results
 end
-# ################################################
+
+patch '/recipe/new/:id/rating' do
+  recipe = Recipe.find(params[:id])
+  recipe.update({:rating => params["rating"]})
+  redirect "/recipe/new/#{recipe.id}/tag"
+end
+
+delete '/recipe/:id/delete' do
+  recipe = Recipe.find(params[:id])
+  recipe.steps.each do |step|
+    step.delete
+  end
+  recipe.destroy
+  redirect '/'
+end

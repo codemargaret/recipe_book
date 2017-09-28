@@ -1,0 +1,34 @@
+
+
+<div class="card" id="content">
+  <h1><%= @recipe.name %> <%= @recipe.rating %></h1>
+
+  <h5><% @recipe.tags.each do |tag| %>
+    <%= "#" + tag.name %>
+    <% end %>
+  </h5>
+  <div class="row justify-content-md-center">
+    <div class="col-lg-6 col-sm-12 mb-sm-4">
+
+      <h3>Ingredients</h3>
+      <ul>
+        <% @recipe.ingredients.each do |ingredient| %>
+          <% list = List.where(:recipe_id => @recipe.id, :ingredient_id => ingredient.id).first %>
+          <li><%= list.quantity + " " + Unit.find(list.unit_id).name + " "%> <%=" " + ingredient.name %></li>
+        <% end %>
+      </ul>
+    </div>
+    <div class="col-lg-6 col-sm-12 mb-sm-4">
+      <h3>Steps</h3>
+      <ul>
+        <% @recipe.steps.each do |step| %>
+          <li><%= step.step_num %> <%=" " + step.name %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <form action="/recipe/<%= @recipe.id %>/delete" method="post">
+    <input name="_method" type="hidden" value="delete">
+    <button class="btn btn-outline-danger" type="submit">Delete Recipe</button>
+  </form>
+</div>
