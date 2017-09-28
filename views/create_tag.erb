@@ -1,0 +1,102 @@
+<!-- This shows ingredients and steps already added -->
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-12 mb-sm-4">
+  <!-- #Show ingredients from previous page -->
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Ingredients:</div>
+        <div class="card-body">
+          <% if (@recipe.ingredients).any? %>
+            <ul>
+              <% @recipe.ingredients.each do |ingredient| %>
+                <% list = List.where(:recipe_id => @recipe.id, :ingredient_id => ingredient.id).first %>
+                <li><%= list.quantity + " " + Unit.find(list.unit_id).name + " "%> <%=" " + ingredient.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>There are no ingredients yet! Add or create a new ingredient using the form to the right!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-sm-12 mb-sm-4">
+    <!-- #Show step that the user inputs -->
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Steps:</div>
+        <div class="card-body">
+          <% if (@recipe.steps).any? %>
+            <ul>
+              <% @recipe.steps.each do |step| %>
+                <li><%= step.step_num %> <%=" " + step.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>There are no steps yet! Create a new step using the form to the right!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- This is new code -->
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-12">
+    <div class="card ml-lg-0" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Tags:</div>
+        <div class="card-body mb-3" id="h-r-body">
+          <% if (@recipe.tags).any? %>
+            <ul>
+              <% @recipe.tags.each do |tag| %>
+                <li><%= tag.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>There are no tags yet! Create or add a new tag using the form to the right!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-sm-12">
+    <div class="card ml-lg-0" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Add a Tag</div>
+        <div class="card-body mb-3" id="h-r-body">
+          <% # ROUTE ME & FIX NAMES %>
+          <form class="mb-3" action="/recipe/new/<%= @recipe.id %>/tag/add" method="post">
+            <div class="form-row align-items-center">
+              <div class="col-sm-9">
+                <select class="custom-select" name="tag_id" style="width: 100%;">
+                  <% (@tags - @recipe.tags).each do |tag| %>
+                  <option value="<%= tag.id %>">
+                    <%= tag.name %>
+                  </option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+          <h3 class="text-center">OR</h3>
+          <% # ROUTE ME & FIX NAMES %>
+          <form class="mt-3" action="/recipe/new/<%= @recipe.id %>/tag/create" method="post">
+            <div class="form-row align-items-center">
+              <div class="col-sm-9">
+                <input class="form-control mb-2 mb-sm-0" type="text" name="name" placeholder="Dessert">
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

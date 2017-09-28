@@ -51,34 +51,38 @@
       <div class="card border-secondary" id="highest-rated">
         <div class="card-header bg-secondary text-white" id="h-r-header">Search for a Recipe</div>
         <div class="card-body mb-3" id="h-r-body">
-          <form class="mb-3">
+          <form class="mb-3" action="/recipes/by_tag" method="post">
             <div class="form-row align-items-center">
               <div class="col-9">
                 <label for="ingredient" style="width: 30%;">Find by Tag</label>
-                <select class="custom-select" name="ingredient" style="width: 60%;">
-                  <option selected>
-                    I Need Ruby Code
-                  </option>
+                <select class="custom-select" name="tag_id" style="width: 60%;">
+                  <% @tags.each do |tag| %>
+                    <option value="<%= tag.id %>">
+                      <%= tag.name %>
+                    </option>
+                  <% end %>
                 </select>
               </div>
               <div class="col-3">
-                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Submit</button>
+                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Search</button>
               </div>
             </div>
           </form>
           <h3 class="text-center">OR</h3>
-          <form class="mt-3">
+          <form class="mt-3" action="/recipes/by_ingredient" method="post">
             <div class="form-row align-items-center">
               <div class="col-9">
-                <label for="ingredient" style="width: 30%;">Find by Ingredient</label>
-                <select class="custom-select" name="ingredient" style="width: 60%;">
-                  <option selected>
-                    I Need Ruby Code
-                  </option>
+                <label for="id" style="width: 30%;">Find by Ingredient</label>
+                <select class="custom-select" name="id" style="width: 60%;">
+                  <% @ingredients.each do |ingredient| %>
+                    <option value="<%= ingredient.id %>">
+                      <%= ingredient.name %>
+                    </option>
+                  <% end %>
                 </select>
               </div>
               <div class="col-3">
-                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Submit</button>
+                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Search</button>
               </div>
             </div>
           </form>

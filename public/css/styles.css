@@ -30,12 +30,12 @@ a.text-white {
   padding-bottom: 0;
   margin-bottom: 0;
 }
+/* todo: MAKE A CLASS */
 #content {
   padding: 20px;
-
 }
 .h-r-cards {
-  height: 150px;;
+  height: 150px;
 }
 #h-r-header {
   font-size: 28px;

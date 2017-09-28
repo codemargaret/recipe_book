@@ -1,4 +1,23 @@
 <div class="row justify-content-md-center">
+  <div class="col mb-sm-4">
+  <!-- #Show ingredients from previous page -->
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Add a step</div>
+        <div class="card-body">
+          <form action="/recipe/new/<%= @recipe.id %>/step/create" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="step">
+            </div>
+            <button class="btn btn-outline-success btn-block" type="submit">Add step</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row justify-content-md-center">
   <div class="col-lg-4 col-sm-12 mb-sm-4">
   <!-- #Show ingredients from previous page -->
     <div class="card" id="content">
@@ -18,7 +37,8 @@
         </div>
       </div>
     </div>
-
+  </div>
+  <div class="col-lg-8 col-sm-12 mb-sm-4">
     <!-- #Show step that the user inputs -->
     <div class="card" id="content">
       <div class="card border-secondary">
@@ -27,7 +47,7 @@
           <% if (@recipe.steps).any? %>
             <ul>
               <% @recipe.steps.each do |step| %>
-                <li><%= step.num %> <%=" " + step.name %></li>
+                <li><%= step.step_num %> <%=" " + step.name %></li>
               <% end %>
             </ul>
           <% else %>
@@ -38,3 +58,5 @@
     </div>
   </div>
 </div>
+
+<a href="/recipe/new/<%= @recipe.id %>/tag">Click here to continue</a>

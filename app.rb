@@ -6,6 +6,8 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
 get '/' do
   @recipes = Recipe.where("rating >= 4").limit(3)
+  @ingredients = Ingredient.all
+  @tags = Tag.all
   erb :index
 end
 
@@ -86,9 +88,58 @@ end
 
 #CREATE and ADD a step
 post '/recipe/new/:id/step/create' do
-  step_name = params["name"]
+  step = params["step"]
   new_recipe = Recipe.find(params[:id])
-  new_step = Step.create({:name => step_name, :recipe_id => params[:id], :num => new_recipe.steps.count + 1})
+  new_step = Step.create({:name => step, :recipe_id => params[:id], :step_num => new_recipe.steps.count + 1})
   redirect "/recipe/new/#{new_recipe.id}/step"
+end
+
+post '/recipes/by_ingredient' do
+  redirect "recipes/by_ingredient/#{params['id']}"
+end
+
+#View all recipes with a certain ingredient
+get '/recipes/by_ingredient/:id' do
+  ingredient = Ingredient.find(params[:id])
+  @recipes = ingredient.recipes
+  erb :results
+end
+
+get '/recipe/new/:id/tag' do
+  @recipe = Recipe.find(params[:id])
+  @tags = Tag.all
+  erb :create_tag
+end
+
+# CREATE and ADD an ingredient
+post '/recipe/new/:id/tag/create' do
+  # Grab data from form
+  name = params["name"]
+  # Find the recipe we are creating
+  our_recipe = Recipe.find(params[:id])
+  # Create a new tag
+  new_tag = Tag.create({:name => name})
+  our_recipe.tags.push(new_tag)
+  redirect "/recipe/new/#{our_recipe.id}/tag"
+end
+
+# ADD an ingredient
+post '/recipe/new/:id/tag/add' do
+  # Find the recipe we are creating
+  our_recipe = Recipe.find(params[:id])
+  # Create a new tag
+  tag = Tag.find(params["tag_id"])
+  our_recipe.tags.push(tag)
+  redirect "/recipe/new/#{our_recipe.id}/tag"
+end
+
+post '/recipes/by_tag' do
+  redirect "recipes/by_tag/#{params['tag_id']}"
+end
+
+get '/recipes/by_tag/:id' do
+  tag = Tag.find(params[:id])
+  @recipes = tag.recipes
+  erb :results
 end
 # ################################################
