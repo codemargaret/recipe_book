@@ -1,0 +1,40 @@
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-12 mb-sm-4">
+  <!-- #Show ingredients from previous page -->
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Ingredients:</div>
+        <div class="card-body">
+          <% if (@recipe.ingredients).any? %>
+            <ul>
+              <% @recipe.ingredients.each do |ingredient| %>
+                <% list = List.where(:recipe_id => @recipe.id, :ingredient_id => ingredient.id).first %>
+                <li><%= list.quantity + " " + Unit.find(list.unit_id).name + " "%> <%=" " + ingredient.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>There are no ingredients yet! Add or create a new ingredient using the form to the right!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- #Show step that the user inputs -->
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Steps:</div>
+        <div class="card-body">
+          <% if (@recipe.steps).any? %>
+            <ul>
+              <% @recipe.steps.each do |step| %>
+                <li><%= step.num %> <%=" " + step.name %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <p>There are no steps yet! Create a new step using the form to the right!</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

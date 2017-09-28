@@ -3,7 +3,7 @@ class CreateList < ActiveRecord::Migration[5.1]
     create_table(:lists) do |t|
       t.column(:ingredient_id, :integer)
       t.column(:recipe_id, :integer)
-      t.column(:quantity, :integer)
+      t.column(:quantity, :string)
       t.column(:unit_id, :integer)
 
       t.timestamps

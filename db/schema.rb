@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20170927214941) do
   create_table "lists", force: :cascade do |t|
     t.integer "ingredient_id"
     t.integer "recipe_id"
-    t.integer "quantity"
+    t.string "quantity"
     t.integer "unit_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -5,36 +5,20 @@
         <div class="card-header bg-secondary text-white" id="h-r-header">Check Out Some of Our Highest Rated Recipes</div>
         <div class="card-body" id="h-r-body">
           <div class="row">
-            <div class="col-lg-4 col-sm-12">
-              <div class="card text-white bg-secondary h-r-cards mb-3">
-                <div class="card-body">
-                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
-                </div>
-                <div class="card-footer">
-                  <small>Created on: RECIPE.TIMESTAMP</small>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-              <div class="card text-white bg-secondary h-r-cards mb-3">
-                <div class="card-body">
-                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
-                </div>
-                <div class="card-footer">
-                  <small>Created on: RECIPE.TIMESTAMP</small>
+
+            <% @recipes.each do |recipe| %>
+              <div class="col-lg-4 col-sm-12">
+                <div class="card text-white bg-secondary h-r-cards mb-3">
+                  <div class="card-body">
+                    <a href="/recipe/<%= recipe.id %>" class="text-white"><%= recipe.name %></a>
+                    <p>Rating: <%= recipe.rating %></p>
+                  </div>
+                  <div class="card-footer">
+                    <small>Created on: <%= recipe.created_at.strftime("%m/%d/%Y") + recipe.created_at.strftime("%l:%M %p") %></small>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="col-lg-4 col-sm-12">
-              <div class="card text-white bg-secondary h-r-cards mb-3">
-                <div class="card-body">
-                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
-                </div>
-                <div class="card-footer">
-                  <small>Created on: RECIPE.TIMESTAMP</small>
-                </div>
-              </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>
