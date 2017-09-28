@@ -1,0 +1,78 @@
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-12 mb-sm-4">
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Ingredients:</div>
+        <div class="card-body">
+          CURRENT INGREDIENTS RUBY CODE IF NONE DISPLAY INSTRUCTIONS TO ADD ONE
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-sm-12">
+    <div class="card ml-lg-0" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Add an Ingredient</div>
+        <div class="card-body mb-3" id="h-r-body">
+          <% # ROUTE ME & FIX NAMES %>
+          <form class="mb-3">
+            <div class="form-row align-items-center">
+              <div class="col-sm-5">
+                <label class="sr-only" for="inlineFormInputName">Name</label>
+                <select class="custom-select" name="ingredient" style="width: 100%;">
+                  <option selected>
+                    I Need Ruby Code
+                  </option>
+                </select>
+              </div>
+              <div class="col-sm-1">
+                <label class="sr-only" for="new_quantity">Name</label>
+                <input class="form-control mb-2 mb-sm-0" placeholder="2">
+              </div>
+              <div class="col-sm-4">
+                <label class="sr-only" for="inlineFormInputName">Name</label>
+                <select class="custom-select" name="ingredient" style="width: 100%;">
+                  <% @units.each do |unit| %>
+                    <option>
+                      <%= unit.name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+          <h3 class="text-center">OR</h3>
+          <% # ROUTE ME & FIX NAMES %>
+          <form class="mt-3">
+            <div class="form-row align-items-center">
+              <div class="col-sm-5">
+                <label class="sr-only" for="new_ingredient">Name</label>
+                <input type="text" class="form-control mb-2 mb-sm-0" placeholder="Flour">
+              </div>
+              <div class="col-sm-1">
+                <label class="sr-only" for="new_quantity">Name</label>
+                <input class="form-control mb-2 mb-sm-0" placeholder="2">
+              </div>
+              <div class="col-sm-4">
+                <label class="sr-only" for="inlineFormInputName">Name</label>
+                <select class="custom-select" name="ingredient" style="width: 100%;">
+                  <% @units.each do |unit| %>
+                    <option>
+                      <%= unit.name %>
+                    </option>
+                  <% end %>
+                </select>
+              </div>
+              <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary btn-block" style="width:100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

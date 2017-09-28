@@ -1,0 +1,105 @@
+<div class="row justify-content-md-center mb-4">
+  <div class="col-12">
+    <div class="card" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Check Out Some of Our Highest Rated Recipes</div>
+        <div class="card-body" id="h-r-body">
+          <div class="row">
+            <div class="col-lg-4 col-sm-12">
+              <div class="card text-white bg-secondary h-r-cards mb-3">
+                <div class="card-body">
+                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
+                </div>
+                <div class="card-footer">
+                  <small>Created on: RECIPE.TIMESTAMP</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <div class="card text-white bg-secondary h-r-cards mb-3">
+                <div class="card-body">
+                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
+                </div>
+                <div class="card-footer">
+                  <small>Created on: RECIPE.TIMESTAMP</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-sm-12">
+              <div class="card text-white bg-secondary h-r-cards mb-3">
+                <div class="card-body">
+                  <h4 class="card-title">INSERT RUBY CODE FOR RECIPE.NAME</h4>
+                </div>
+                <div class="card-footer">
+                  <small>Created on: RECIPE.TIMESTAMP</small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row justify-content-md-center">
+  <div class="col-lg-4 col-sm-12 mb-sm-4">
+    <div class="card" id="content">
+      <div class="card border-secondary">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Create a New Recipe</div>
+        <div class="card-body">
+          <div class="card text-white bg-secondary">
+            <div class="card-body">
+              <form action="/recipe/new" method="post">
+                <div class="form-group">
+                  <label for="name">Name Your Creation:</label>
+                  <input class="form-control" type="text" name="name"/>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-8 col-sm-12">
+    <div class="card ml-lg-0" id="content">
+      <div class="card border-secondary" id="highest-rated">
+        <div class="card-header bg-secondary text-white" id="h-r-header">Search for a Recipe</div>
+        <div class="card-body mb-3" id="h-r-body">
+          <form class="mb-3">
+            <div class="form-row align-items-center">
+              <div class="col-9">
+                <label for="ingredient" style="width: 30%;">Find by Tag</label>
+                <select class="custom-select" name="ingredient" style="width: 60%;">
+                  <option selected>
+                    I Need Ruby Code
+                  </option>
+                </select>
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+          <h3 class="text-center">OR</h3>
+          <form class="mt-3">
+            <div class="form-row align-items-center">
+              <div class="col-9">
+                <label for="ingredient" style="width: 30%;">Find by Ingredient</label>
+                <select class="custom-select" name="ingredient" style="width: 60%;">
+                  <option selected>
+                    I Need Ruby Code
+                  </option>
+                </select>
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
